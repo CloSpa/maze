@@ -44,6 +44,8 @@ def choose_map():
     carte_choisie = Carte(nom_carte, cartes[int(num_carte_choisie) - 1][1])
     carte_en_cours = Carte(nom_carte, cartes[int(num_carte_choisie) - 1][1])
 
+    return carte_choisie, carte_en_cours
+
 
 # ON AFFICHE LES REGLES
 rules = ("""
@@ -65,17 +67,19 @@ rules = ("""
 Par exemple, 'E3' vous déplace de 3 cases vers l'Est.
 => 'Q' vous permet de quitter la partie en sauvegardant.""")
 
+def move_robot(action, robot):
+    print("\n")
+    print(carte_en_cours)
+    action = input("\nNous vous écoutons\n> ").upper()
 
-#
-# robot = Robot(carte_en_cours)
+
+
 #
 # # ON LANCE LA BOUCLE DE JEU
 # should_keep_going = True
 #
 # while should_keep_going is True:
-#     print("\n")
-#     print(carte_en_cours)
-#     action = input("\nNous vous écoutons\n> ").upper()
+#
 #
 #     while action[0].isalpha() is False:
 #         action = input("\nVous devriez essayer une lettre\n> ").upper()
