@@ -57,10 +57,11 @@ class Robot:
         return self.x, self.y
 
     def moveNord(self, action, carte_choisie, carte_en_cours):
+        distance = action[1:]
         if len(action) == 1:
             action = "N1"
-        if int(action[1:]) <= self.y:
-            for i in range(1, int(action[1:]) + 1):
+        if int(distance) <= self.y:
+            for i in range(1, int(distance) + 1):
 
                 # SI ON VA SUR "O"
                 if carte_choisie.lignes[self.y - i][self.x] == "O":
@@ -68,10 +69,10 @@ class Robot:
                     return
 
             # SI ON VA SUR " " ou "." ou "U"
-            if carte_choisie.lignes[self.y - int(action[1:])][self.x] in " .U":
+            if carte_choisie.lignes[self.y - int(distance)][self.x] in " .U":
 
                 # SPECIFIQUE SI ON VA SUR "U"
-                if carte_choisie.lignes[self.y - int(action[1:])][self.x] == "U":
+                if carte_choisie.lignes[self.y - int(distance)][self.x] == "U":
                     print("\n* * * Félicitations, vous avez atteint la sortie ! * * *\n")
 
                 # SI ON EST SUR " " OU "X"
@@ -82,7 +83,7 @@ class Robot:
                 elif carte_choisie.lignes[self.y][self.x] == ".":
                     carte_en_cours.lignes[self.y] = carte_choisie.lignes[self.y]
 
-                self.y -= int(action[1:])
+                self.y -= int(distance)
                 carte_en_cours.lignes[self.y] = carte_en_cours.lignes[self.y][:self.x] + "X" + carte_en_cours.lignes[self.y][int(self.x + 1):]
 
         else:
@@ -90,10 +91,11 @@ class Robot:
                 "\nVous ne pouvez pas effectuer ce déplacement.\nLe Cours Préparatoire vous apprend à compter, n'hésitez pas à y refaire un tour ;)\n")
 
     def moveOuest(self, action, carte_choisie, carte_en_cours):
+        distance = action[1:]
         if len(action) == 1:
             action = "O1"
-        if int(action[1:]) <= self.x:
-            for i in range(1, int(action[1:]) + 1):
+        if int(distance) <= self.x:
+            for i in range(1, int(distance) + 1):
 
                 # SI ON VA SUR "O"
                 if carte_choisie.lignes[self.y][self.x - i] == "O":
@@ -101,10 +103,10 @@ class Robot:
                     return
 
             # SI ON VA SUR " " ou "." ou "U"
-            if carte_choisie.lignes[self.y][self.x - int(action[1:])] in " .U":
+            if carte_choisie.lignes[self.y][self.x - int(distance)] in " .U":
 
                 # SPECIFIQUE SI ON VA SUR "U"
-                if carte_choisie.lignes[self.y][self.x - int(action[1:])] == "U":
+                if carte_choisie.lignes[self.y][self.x - int(distance)] == "U":
                     print("\n* * * Félicitations, vous avez atteint la sortie ! * * *\n")
 
                 # SI ON EST SUR " " OU "X"
@@ -115,7 +117,7 @@ class Robot:
                 elif carte_choisie.lignes[self.y][self.x] == ".":
                     carte_en_cours.lignes[self.y] = carte_choisie.lignes[self.y]
 
-                self.x -= int(action[1:])
+                self.x -= int(distance)
                 carte_en_cours.lignes[self.y] = carte_en_cours.lignes[self.y][:self.x] + "X" + carte_en_cours.lignes[self.y][int(self.x + 1):]
 
         else:
@@ -125,10 +127,11 @@ class Robot:
             """)
 
     def moveEst(self, action, carte_choisie, carte_en_cours, should_keep_going):
+        distance = action[1:]
         if len(action) == 1:
             action = "E1"
-        if int(action[1:]) <= int((len(carte_en_cours.lignes[self.x]) - 1)) - int(self.x):
-            for i in range(1, int(action[1:]) + 1):
+        if int(distance) <= int((len(carte_en_cours.lignes[self.x]) - 1)) - int(self.x):
+            for i in range(1, int(distance) + 1):
 
                 # SI ON VA SUR "O"
                 if carte_choisie.lignes[self.y][self.x + i] == "O":
@@ -136,10 +139,10 @@ class Robot:
                     return
 
             # SI ON VA SUR " " ou "." ou "U"
-            if carte_choisie.lignes[self.y][self.x + int(action[1:])] in " .U":
+            if carte_choisie.lignes[self.y][self.x + int(distance)] in " .U":
 
                 # SPECIFIQUE SI ON VA SUR "U"
-                if carte_choisie.lignes[self.y][self.x + int(action[1:])] == "U":
+                if carte_choisie.lignes[self.y][self.x + int(distance)] == "U":
                     print("\n* * * Félicitations, vous avez atteint la sortie ! * * *\n")
 
                 # SI ON EST SUR " " OU "X"
@@ -150,7 +153,7 @@ class Robot:
                 elif carte_choisie.lignes[self.y][self.x] == ".":
                     carte_en_cours.lignes[self.y] = carte_choisie.lignes[self.y]
 
-                self.x += int(action[1:])
+                self.x += int(distance)
                 carte_en_cours.lignes[self.y] = carte_en_cours.lignes[self.y][:self.x] + "X" + carte_en_cours.lignes[self.y][int(self.x + 1):]
 
         else:
@@ -158,10 +161,11 @@ class Robot:
                 "\nVous ne pouvez pas effectuer ce déplacement.\nLe Cours Préparatoire vous apprend à compter, n'hésitez pas à y refaire un tour ;)\n")
 
     def moveSud(self, action, carte_choisie, carte_en_cours):
+        distance = action[1:]
         if len(action) == 1:
             action = "S1"
-        if int(action[1:]) <= (len(carte_en_cours.lignes) - 1) - self.y:
-            for i in range(1, int(action[1:]) + 1):
+        if int(distance) <= (len(carte_en_cours.lignes) - 1) - self.y:
+            for i in range(1, int(distance) + 1):
 
                 # SI ON VA SUR "O"
                 if carte_choisie.lignes[self.y + i][self.x] == "O":
@@ -169,10 +173,10 @@ class Robot:
                     return
 
             # SI ON VA SUR " " OU "." ou "U"
-            if carte_choisie.lignes[self.y + int(action[1:])][self.x] in " .U":
+            if carte_choisie.lignes[self.y + int(distance)][self.x] in " .U":
 
                 # SPECIFIQUE SI ON VA SUR "U"
-                if carte_choisie.lignes[self.y + int(action[1:])][self.x] == "U":
+                if carte_choisie.lignes[self.y + int(distance)][self.x] == "U":
                     print("\n* * * Félicitations, vous avez atteint la sortie ! * * *\n")
 
                 # SI ON EST SUR " " OU "X"
@@ -183,7 +187,7 @@ class Robot:
                 elif carte_choisie.lignes[self.y][self.x] == ".":
                     carte_en_cours.lignes[self.y] = carte_choisie.lignes[self.y]
 
-                self.y += int(action[1:])
+                self.y += int(distance)
                 carte_en_cours.lignes[self.y] = carte_en_cours.lignes[self.y][:self.x] + "X" + carte_en_cours.lignes[
                                                                                                    self.y][
                                                                                                int(self.x + 1):]
