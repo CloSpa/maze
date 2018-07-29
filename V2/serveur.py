@@ -32,8 +32,8 @@ while server_is_listening:
             private_socket.send(msg_rules)
             robot_number = str(connected_sockets.index(private_socket)+1)
             msg_robot_number = f"\nTon robot sera symbolisé par le chiffre {robot_number}"
-            encoded_msg_robot_number = msg_robot_number.encode()
-            private_socket.send(encoded_msg_robot_number)
+            msg_robot_number = msg_robot_number.encode()
+            private_socket.send(msg_robot_number)
             robots.append(Robot(robot_number, carte_en_cours)) # on crée une instance de Robot à chaque joueur
             """
             On prévient qu'il y a suffisamment de clients pour pouvoir commencer la partie
